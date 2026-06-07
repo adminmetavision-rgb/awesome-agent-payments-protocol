@@ -18,6 +18,7 @@
   - [ACP (Agentic Commerce Protocol)](#acp-agentic-commerce-protocol)
   - [MPP (Machine Payments Protocol)](#mpp-machine-payments-protocol)
   - [AMP (Agentic Mobile Protocol)](#amp-agentic-mobile-protocol)
+  - [ERC-8183 (Agentic Commerce Escrow)](#erc-8183-agentic-commerce-escrow)
   - [Network Trust Rails for Agents](#network-trust-rails-for-agents)
   - [Identity / Interop](#identity--interop)
 - [Specifications & Whitepapers](#-specifications--whitepapers)
@@ -127,6 +128,14 @@
 - [Ant International: AMP Launch (Business Wire)](https://www.businesswire.com/news/home/20260427209524/en/Ant-International-Launches-Open-Sourced-Agentic-Mobile-Protocol-to-Drive-AI-Commerce) — World's first open-sourced agentic payment framework for mobile surfaces (digital wallets, super apps, banking apps, wearables, in-car), announced Apr 28, 2026
 - Connects LLMs, platforms, and merchant agents to 4.4B+ digital wallet users via Alipay+; cuts agent-to-wallet linking steps ~50% vs card binding; per-transaction money-back guarantee for account-takeover cases
 
+### ERC-8183 (Agentic Commerce Escrow)
+
+- [ERC-8183 Specification](https://eips.ethereum.org/EIPS/eip-8183) — Official EIP
+- [ERC-8183 Discussion](https://ethereum-magicians.org/t/erc-8183-agentic-commerce/27902) — Ethereum Magicians thread
+- [ERC-8004 Specification](https://eips.ethereum.org/EIPS/eip-8004) — Companion identity + reputation registries that ERC-8183 contracts can write feedback to on settlement
+
+> **ERC-8183 vs x402 / MPP:** Where x402 and MPP settle instantly per request (good for stateless metered access), ERC-8183 is the **on-chain escrow** standard for *service-delivery* between agents — cases where the deliverable can't be verified by HTTP 200 and a neutral Evaluator may need to adjudicate. Lifecycle: `createJob → approve → fund → submit → complete | reject`. Stablecoin-denominated, 3-way fee split (provider/evaluator/platform) enforced by the contract, refund-on-expiry, native composition with ERC-8004 reputation feedback on settlement.
+
 ### Network Trust Rails for Agents
 
 #### Visa Trusted Agent Protocol
@@ -174,6 +183,11 @@
 
 - [MPP Overview & Spec](https://mpp.dev/overview) — Protocol specification and payment flow documentation
 - [IETF Payment HTTP Authentication Scheme](https://mpp.dev/overview) — See spec link on mpp.dev
+
+### ERC-8183 / ERC-8004
+
+- [ERC-8183 — Agentic Commerce](https://eips.ethereum.org/EIPS/eip-8183) — On-chain escrow standard for agent-to-agent service delivery (lifecycle, fee splits, evaluator role, expiry refund)
+- [ERC-8004 — Trustless Agents](https://eips.ethereum.org/EIPS/eip-8004) — On-chain identity and reputation registries for autonomous agents (signed feedback, scoring rules hash, ERC-1271 contract signatures)
 
 ### Web Bot Auth / Agent Identity
 
@@ -237,6 +251,10 @@
 - [A2A Samples Repository](https://github.com/a2aproject/a2a-samples) — Hello-world, multi-agent, and framework-specific examples
 - [A2A Inspector](https://github.com/a2aproject/a2a-inspector) — Validate your A2A agent
 
+### ERC-8183 / ERC-8004 Implementation
+
+- [CardZero](https://cardzero.ai) — First known production deployment of ERC-8004 + ERC-8183 on Base mainnet. ERC-4337 smart-contract wallet for AI agents with owner-set spending rules, x402 buyer support, and full Job-escrow lifecycle live at `api.cardzero.ai/v1/jobs`. Source on [GitHub](https://github.com/mrocker/CardZero); MCP server published as [`cardzero-mcp`](https://www.npmjs.com/package/cardzero-mcp); 27-page docs + `/llms-full.txt` corpus at [cardzero.ai/docs](https://cardzero.ai/docs).
+
 ### Agent Frameworks & Managed Platforms
 
 #### Amazon Bedrock AgentCore Payments
@@ -290,6 +308,10 @@ Open-sourced by **Ant International** and implemented with **Alipay+** wallet pa
 
 **Visa's Trusted Agent Protocol** and **Mastercard's Agent Pay** both leverage **Web Bot Auth** for cryptographically signed agent identity during browse and payment flows. In 2026 both expanded internationally — Visa's Agentic Ready program to Latin America and Asia, and Mastercard's Agent Pay to markets including Hong Kong.
 
+### Agent Reputation & Scoring
+
+- [DJD Agent Score](https://djd-agent-score.fly.dev) — Behavioral reputation scoring API for AI agent wallets on Base. Scores agents 0–100 across 5 dimensions using on-chain transaction patterns, sybil detection, and gaming velocity checks. x402-native monetization, MCP server distribution, and ERC-8004 compatible. ([GitHub](https://github.com/jacobsd32-cpu/djd-agent-score))
+
 ### Analytics & Dashboards
 
 - [agenteconomy.to](https://agenteconomy.to) — Real-time dashboard tracking AI agent on-chain payment activity across x402, ERC-8004, ERC-8183 (Virtuals ACP), and MPP (Stripe/Tempo) on 8 chains. Aggregated event counter, chain distribution, facilitator share, and time-series charts. Data refreshes every 6 hours. ([source](https://github.com/realdora/agenteconomy))
@@ -323,6 +345,7 @@ Open-sourced by **Ant International** and implemented with **Alipay+** wallet pa
 
 - **Coinbase** — x402 creator, AP2 partner, AgentCore Payments partner
 - **Tempo Labs** — MPP co-author (Paradigm-backed, payments-optimized L1)
+- **Radius Network** — x402-compatible stablecoin L1 for agentic micropayments (mainnet launched Mar 2026; sub-second finality, sub-penny fees) ([docs](https://docs.radiustech.xyz/developer-resources/x402-integration))
 
 ---
 
@@ -488,4 +511,4 @@ This list is released under [CC0 1.0](LICENSE) (Public Domain). No rights reserv
 
 ---
 
-**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `amp` `agentic-mobile-protocol` `trusted-agent-protocol` `agent-pay` `gemini-spark` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `agentcore` `google-cloud` `coinbase` `stripe` `openai` `aws` `tempo`
+**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `amp` `agentic-mobile-protocol` `trusted-agent-protocol` `agent-pay` `gemini-spark` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `agentcore` `erc-8183` `erc-8004` `google-cloud` `coinbase` `stripe` `openai` `aws` `tempo`
