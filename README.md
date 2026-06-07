@@ -17,6 +17,7 @@
   - [x402 (Machine Payments over HTTP 402)](#x402-machine-payments-over-http-402)
   - [ACP (Agentic Commerce Protocol)](#acp-agentic-commerce-protocol)
   - [MPP (Machine Payments Protocol)](#mpp-machine-payments-protocol)
+  - [AMP (Agentic Mobile Protocol)](#amp-agentic-mobile-protocol)
   - [Network Trust Rails for Agents](#network-trust-rails-for-agents)
   - [Identity / Interop](#identity--interop)
 - [Specifications & Whitepapers](#-specifications--whitepapers)
@@ -51,6 +52,7 @@
 - [AP2 Roadmap](https://ap2-protocol.org/) — See roadmap section on official site
 - [AP2 Partners](https://ap2-protocol.org/) — See partners section on official site
 - [AP2 and UCP](https://ap2-protocol.org/) — How AP2 provides the payment mandate layer for UCP
+- [Google Gemini Spark](https://tech.yahoo.com/ai/gemini/articles/googles-gemini-spark-announced-meet-174500393.html) — Always-on consumer agent (Gemini 3.5) that queues, monitors, and finalizes purchases under AP2 guardrails (spend caps, merchant allow-lists, explicit approval, permanent transaction trail); announced at Google I/O 2026
 
 ### A2A (Agent-to-Agent Protocol)
 
@@ -115,9 +117,15 @@
 - [Stripe: Machine Payments with MPP](https://docs.stripe.com/payments/machine/mpp) — Implementation docs (crypto + fiat via PaymentIntents)
 - [Stripe Blog: Introducing MPP](https://stripe.com/blog/machine-payments-protocol) — Launch post (Mar 2026)
 - [Cloudflare Agents Docs: MPP](https://developers.cloudflare.com/agents/agentic-payments/mpp/) — MPP integration in Cloudflare Workers
+- [Visa: Card Specification & SDK for MPP](https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-card-specification-sdk-for-machine-payments-protocol.html) — Openly available, processor-agnostic card-based MPP spec + SDK; passes tokenized card credentials through MPP workflows; ties into Visa Intelligent Commerce and Trusted Agent Protocol (2026)
 - [IETF Draft: Payment HTTP Authentication Scheme](https://mpp.dev/overview) — See spec link on mpp.dev
 
 > **MPP and x402:** MPP is backwards-compatible with x402. The core x402 exact-payment flows map directly onto MPP's `charge` intent, so MPP clients can consume existing x402 services without modification. MPP additionally supports `session` (streaming/pay-as-you-go) payments, recurring payments, and microtransactions across stablecoins, cards, and bank transfers.
+
+### AMP (Agentic Mobile Protocol)
+
+- [Ant International: AMP Launch (Business Wire)](https://www.businesswire.com/news/home/20260427209524/en/Ant-International-Launches-Open-Sourced-Agentic-Mobile-Protocol-to-Drive-AI-Commerce) — World's first open-sourced agentic payment framework for mobile surfaces (digital wallets, super apps, banking apps, wearables, in-car), announced Apr 28, 2026
+- Connects LLMs, platforms, and merchant agents to 4.4B+ digital wallet users via Alipay+; cuts agent-to-wallet linking steps ~50% vs card binding; per-transaction money-back guarantee for account-takeover cases
 
 ### Network Trust Rails for Agents
 
@@ -222,6 +230,7 @@
 
 - [MPP SDKs](https://mpp.dev/overview) — Official TypeScript SDK (`mppx`) with middleware for Hono, Express, Next.js, Elysia
 - [Stripe: Machine Payments with MPP](https://docs.stripe.com/payments/machine/mpp) — Implementation with PaymentIntents
+- [Visa Card Spec & SDK for MPP](https://corporate.visa.com/en/sites/visa-perspectives/innovation/visa-card-specification-sdk-for-machine-payments-protocol.html) — Card-based MPP transactions via tokenized network payment tokens settling over existing card infrastructure
 
 ### A2A Implementation
 
@@ -273,6 +282,10 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 **Stripe + Tempo Labs (Paradigm)** co-authored MPP. Design partners include Anthropic, DoorDash, Mastercard, Nubank, OpenAI, Ramp, Revolut, Shopify, Standard Chartered, and Visa. Cloudflare supports MPP in its Agents SDK. ([Source: Stripe Blog, Mar 2026](https://stripe.com/blog/machine-payments-protocol))
 
+### AMP / Ant International
+
+Open-sourced by **Ant International** and implemented with **Alipay+** wallet partners (40+ wallets, 1.8B accounts, 150M merchants). AMP targets mobile-native agentic payments across smartphones, smartwatches, AR glasses, and in-car systems. ([Source: Business Wire, Apr 2026](https://www.businesswire.com/news/home/20260427209524/en/Ant-International-Launches-Open-Sourced-Agentic-Mobile-Protocol-to-Drive-AI-Commerce))
+
 ### Agent Trust Rails
 
 **Visa's Trusted Agent Protocol** and **Mastercard's Agent Pay** both leverage **Web Bot Auth** for cryptographically signed agent identity during browse and payment flows. In 2026 both expanded internationally — Visa's Agentic Ready program to Latin America and Asia, and Mastercard's Agent Pay to markets including Hong Kong.
@@ -283,7 +296,7 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 ### Payments Networks
 
-- **Visa** — Trusted Agent Protocol; Agentic Ready program (expanded to LatAm & Asia, 2026)
+- **Visa** — Trusted Agent Protocol; Agentic Ready program (expanded to LatAm & Asia, 2026); card specification + SDK extending MPP to card payments (2026)
 - **Mastercard** — Agent Pay (international expansion incl. Hong Kong, 2026); acquired BVNK for stablecoin infrastructure
 - **PayPal** — AP2 support; ACP participant; upcoming UCP payment method
 - **American Express** — AP2 partner, UCP endorser
@@ -322,6 +335,15 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 - [AWS What's New: AgentCore Payments (preview)](https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore-payments-preview/)
 - [AWS ML Blog: Agents that transact, built with Coinbase and Stripe](https://aws.amazon.com/blogs/machine-learning/agents-that-transact-introducing-amazon-bedrock-agentcore-payments-built-with-coinbase-and-stripe/)
 - [Coinbase Blog: AgentCore Payments powered by x402](https://www.coinbase.com/blog/introducing-amazon-bedrock-agentcore-payments-powered-by-x402-and-coinbase)
+
+#### Google Gemini Spark (Google I/O, May 2026)
+
+- [Gemini Spark announced (Yahoo Tech)](https://tech.yahoo.com/ai/gemini/articles/googles-gemini-spark-announced-meet-174500393.html) — Consumer AP2 agent surface with autonomous, guardrailed purchasing
+- [Google I/O 2026 recap (TheTechHacker)](https://thetechhacker.com/2026/05/20/google-io-2026-recap-gemini-flash-autonomous-agent/)
+
+#### Ant International Launches AMP (April 2026)
+
+- [Business Wire: Ant International launches open-sourced Agentic Mobile Protocol](https://www.businesswire.com/news/home/20260427209524/en/Ant-International-Launches-Open-Sourced-Agentic-Mobile-Protocol-to-Drive-AI-Commerce) — Mobile-native agentic payments via Alipay+
 
 #### OpenAI Discontinues Instant Checkout (Q1 2026)
 
@@ -452,7 +474,9 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting.
 
 **MPP (Machine Payments Protocol)** is an open standard co-authored by Tempo Labs and Stripe for machine-to-machine payments over HTTP 402. Supports stablecoins, cards, and bank transfers. Offers `charge` (one-off) and `session` (streaming micropayment) intents. Backwards-compatible with x402. Based on an IETF-proposed Payment HTTP Authentication Scheme. Launched March 2026.
 
-**Trusted Agent Protocol (Visa) / Agent Pay (Mastercard)** help merchants and networks recognize cryptographically verified AI agents during browse and pay flows, built on Web Bot Auth (IETF drafts). Both expanded internationally in 2026.
+**AMP (Agentic Mobile Protocol)** is an open-sourced framework from Ant International for agentic payments on mobile surfaces — digital wallets, super apps, banking apps, and wearables. Implemented via Alipay+, it emphasizes fast agent-to-wallet linking (~50% fewer steps than card binding) and account-takeover protection with a per-transaction money-back guarantee. Launched April 2026.
+
+**Trusted Agent Protocol (Visa) / Agent Pay (Mastercard)** help merchants and networks recognize cryptographically verified AI agents during browse and pay flows, built on Web Bot Auth (IETF drafts). Both expanded internationally in 2026. In 2026 Visa also released an open, processor-agnostic card specification and SDK extending MPP to card payments.
 
 ---
 
@@ -464,4 +488,4 @@ This list is released under [CC0 1.0](LICENSE) (Public Domain). No rights reserv
 
 ---
 
-**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `trusted-agent-protocol` `agent-pay` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `agentcore` `google-cloud` `coinbase` `stripe` `openai` `aws` `tempo`
+**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `amp` `agentic-mobile-protocol` `trusted-agent-protocol` `agent-pay` `gemini-spark` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `agentcore` `google-cloud` `coinbase` `stripe` `openai` `aws` `tempo`
