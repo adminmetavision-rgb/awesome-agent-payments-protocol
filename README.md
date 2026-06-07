@@ -4,7 +4,7 @@
 
 **PRs welcome!** Found something amazing? [Open a PR](../../pulls) or [suggest a resource](../../issues/new?template=add_resource.yml) 🎯
 
-*Last updated: 2026-03-23*
+*Last updated: 2026-06-07*
 
 ---
 
@@ -40,6 +40,7 @@
 - [Shopify Engineering: Building UCP](https://shopify.engineering/ucp) — Architecture and layered protocol design
 - [UCP and AP2](https://ucp.dev/) — How UCP integrates with AP2 for secure payments (see "UCP and AP2" section on site)
 - [UCP Updates (Mar 2026)](https://blog.google/products-and-platforms/products/shopping/ucp-updates/) — Multi-item carts, catalog queries, identity linking
+- [UCP at Google Marketing Live (May 2026)](https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/) — Universal Cart across Search, Gemini, and Maps with one-tap checkout via Google Pay
 
 ### AP2 (Agent Payments Protocol)
 
@@ -90,6 +91,8 @@
 ### ACP (Agentic Commerce Protocol)
 
 > **Note:** The ACP spec is currently in **beta** and uses date-based version snapshots (2025-09-29, 2025-12-12, 2026-01-16, 2026-01-30).
+>
+> **Status update (Mar 2026):** OpenAI discontinued the consumer-facing **Instant Checkout** experience in ChatGPT after a ~5-month trial (low adoption, weak conversion, unresolved sales-tax handling). The **ACP protocol itself continues** in a narrower form, with OpenAI refocusing on product discovery and ChatGPT apps; Stripe and PayPal remain involved on the payments side. See News & Analysis below.
 
 - [ACP Spec Site](https://agenticcommerce.dev/) — Protocol overview and interactive demo
 - [ACP: Get Started (OpenAI)](https://developers.openai.com/commerce/guides/get-started)
@@ -98,7 +101,7 @@
 - [ACP: Agentic Checkout Spec](https://developers.openai.com/commerce/) — Checkout flow and endpoints
 - [ACP: Delegated Payment Spec](https://developers.openai.com/commerce/) — Shared Payment Token and PSP integration
 - [ACP Spec (GitHub)](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol) — Spec, RFCs, examples, changelog
-- [OpenAI: Buy it in ChatGPT](https://openai.com/index/buy-it-in-chatgpt/) — Instant Checkout launch post
+- [OpenAI: Buy it in ChatGPT](https://openai.com/index/buy-it-in-chatgpt/) — Instant Checkout launch post (Sep 2025; consumer feature later discontinued — see News)
 
 #### Stripe ACP / Agentic Commerce Resources
 
@@ -122,11 +125,13 @@
 
 - [Press Release](https://investor.visa.com/news/news-details/2025/Visa-Introduces-Trusted-Agent-Protocol-An-Ecosystem-Led-Framework-for-AI-Commerce/default.aspx)
 - [Cloudflare Press Note](https://www.cloudflare.com/press/press-releases/2025/cloudflare-collaborates-with-leading-payments-companies-to-secure-and-enable-agentic-commerce/)
+- [Visa Agentic Ready Program — LatAm & Asia expansion (Apr 2026)](https://www.digitalcommerce360.com/2026/04/02/visa-mastercard-in-agentic-commerce/) — Geographic expansion plus AI-assisted disputes and a Ramp partnership for automated corporate bill pay
 
 #### Mastercard Agent Pay
 
 - [Press Release (Sep 2025)](https://www.mastercard.com/us/en/news-and-trends/press/2025/september/mastercard-unveils-new-tools-and-collaborations-to-power-smarter%2C-safer-agentic-commerce.html)
 - [Initial Announcement (Apr 2025)](https://www.mastercard.com/us/en/news-and-trends/press/2025/april/mastercard-unveils-agent-pay-pioneering-agentic-payments-technology-to-power-commerce-in-the-age-of-ai.html)
+- [Agent Pay international expansion, incl. Hong Kong (2026)](https://www.americanbanker.com/payments/news/visa-mastercard-expand-agentic-ai-deployments) — Part of Mastercard's push toward an international agentic-commerce network
 
 ### Identity / Interop
 
@@ -199,6 +204,7 @@
 #### Live Services
 
 - [PoolPulse](https://poolpulse.poolpulse.workers.dev) — x402-payable DeFi execution signals API on Base. CLMM slippage, MEV scoring, routing hints for 33 Uniswap V3 + Aerodrome pools. Built with Hono + x402/hono. Pay per call ($0.001–$0.25 USDC). ([OpenAPI](https://poolpulse.poolpulse.workers.dev/openapi.json), [Examples](https://github.com/HadiFrt20/poolpulse-agent-example))
+- [Coinbase x402 Bazaar](https://docs.cdp.coinbase.com/x402/bazaar) — Discovery layer / MCP server exposing 10,000+ x402-payable endpoints that agents can search, discover, and pay for autonomously (also surfaced via AWS Bedrock AgentCore Gateway)
 
 #### SDKs & Libraries
 
@@ -222,7 +228,14 @@
 - [A2A Samples Repository](https://github.com/a2aproject/a2a-samples) — Hello-world, multi-agent, and framework-specific examples
 - [A2A Inspector](https://github.com/a2aproject/a2a-inspector) — Validate your A2A agent
 
-### Agent Frameworks
+### Agent Frameworks & Managed Platforms
+
+#### Amazon Bedrock AgentCore Payments
+
+- [AWS What's New: AgentCore Payments (preview)](https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore-payments-preview/) — Managed surface for agents to pay for APIs, MCP servers, web content, and other agents
+- [AWS ML Blog: Agents that transact (built with Coinbase and Stripe)](https://aws.amazon.com/blogs/machine-learning/agents-that-transact-introducing-amazon-bedrock-agentcore-payments-built-with-coinbase-and-stripe/) — Wraps x402 negotiation, wallet auth, stablecoin settlement, and proof delivery; deterministic session spending limits at the infra layer
+- [Coinbase Blog: AgentCore Payments powered by x402](https://www.coinbase.com/blog/introducing-amazon-bedrock-agentcore-payments-powered-by-x402-and-coinbase)
+- [Sample: AgentCore + CloudFront + x402](https://github.com/aws-samples/sample-agentcore-cloudfront-x402-payments) — Reference demo using Bedrock AgentCore, Strands SDK, and CloudFront
 
 #### Cloudflare Agents SDK
 
@@ -242,7 +255,7 @@
 
 ### UCP
 
-Co-developed by **Google** and **Shopify**. Endorsed by 20+ partners including Etsy, Wayfair, Target, Walmart, Adyen, American Express, Best Buy, Flipkart, Macy's Inc., Mastercard, Stripe, The Home Depot, Visa, and Zalando. ([Source: Google Blog, Jan 2026](https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/))
+Co-developed by **Google** and **Shopify**. Endorsed by 20+ partners including Etsy, Wayfair, Target, Walmart, Adyen, American Express, Best Buy, Flipkart, Macy's Inc., Mastercard, Stripe, The Home Depot, Visa, and Zalando. ([Source: Google Blog, Jan 2026](https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/)). May 2026: Universal Cart extends checkout across Search, Gemini, and Maps with Google Pay. ([Source: Google Marketing Live](https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/))
 
 ### AP2
 
@@ -250,11 +263,11 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 ### x402 Foundation
 
-**Cloudflare + Coinbase** coordinating adoption of x402. The Agents SDK and MCP servers support x402 out of the box. x402 v2 adds modular payment scheme support for EVM and Solana networks.
+**Cloudflare + Coinbase** coordinating adoption of x402. The Agents SDK and MCP servers support x402 out of the box. x402 v2 adds modular payment scheme support for EVM and Solana networks. As of mid-2026, **AWS Bedrock AgentCore** also wraps x402 as a managed payment surface (built with Coinbase and Stripe), and the **Coinbase x402 Bazaar** exposes 10,000+ payable endpoints. Per Chainalysis, x402 surpassed **100M+ agentic transactions on Base** within ~9 months of launch.
 
 ### ACP
 
-**OpenAI + Stripe** co-developed ACP. Currently live with Instant Checkout in ChatGPT (US). Initial merchant partners include Etsy (live) and Shopify merchants (rolling out). ACP is open to any PSP — Stripe is the first with its Shared Payment Token. The spec is in **beta** with active iteration. ([Source: OpenAI](https://openai.com/index/buy-it-in-chatgpt/))
+**OpenAI + Stripe** co-developed ACP. The consumer-facing **Instant Checkout** experience in ChatGPT was **discontinued in early 2026** after a ~5-month trial (low adoption, weak conversion, unresolved sales-tax handling); the **ACP protocol continues** in a narrower form with OpenAI refocusing on product discovery and ChatGPT apps. ACP remains open to any PSP — Stripe provides the first implementation via Shared Payment Token, with PayPal also involved. ([Source: TechCrunch, Mar 2026](https://techcrunch.com/2026/03/24/openais-plans-to-make-chatgpt-more-like-amazon-arent-going-so-well/))
 
 ### MPP / Tempo
 
@@ -262,7 +275,7 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 ### Agent Trust Rails
 
-**Visa's Trusted Agent Protocol** and **Mastercard's Agent Pay** both leverage **Web Bot Auth** for cryptographically signed agent identity during browse and payment flows.
+**Visa's Trusted Agent Protocol** and **Mastercard's Agent Pay** both leverage **Web Bot Auth** for cryptographically signed agent identity during browse and payment flows. In 2026 both expanded internationally — Visa's Agentic Ready program to Latin America and Asia, and Mastercard's Agent Pay to markets including Hong Kong.
 
 ### Analytics & Dashboards
 
@@ -270,13 +283,20 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 ### Payments Networks
 
-- **Visa** — Trusted Agent Protocol
-- **Mastercard** — Agent Pay; acquired BVNK for stablecoin infrastructure
-- **PayPal** — AP2 support; upcoming UCP payment method
+- **Visa** — Trusted Agent Protocol; Agentic Ready program (expanded to LatAm & Asia, 2026)
+- **Mastercard** — Agent Pay (international expansion incl. Hong Kong, 2026); acquired BVNK for stablecoin infrastructure
+- **PayPal** — AP2 support; ACP participant; upcoming UCP payment method
 - **American Express** — AP2 partner, UCP endorser
 - **Adyen** — AP2 integration, UCP endorser
 - **Worldpay** — AP2 support
 - **Stripe** — ACP co-creator, MPP co-author, UCP endorser
+- **AWS** — Bedrock AgentCore Payments (preview), managed x402 + Stripe surface built with Coinbase and Stripe
+
+### Stablecoin & Settlement Infrastructure
+
+- **AllUnity** — Launched an agentic payments settlement layer powered by x402; planning a Swedish krona stablecoin (SEKAU, MiCA-regulated e-money token) targeting a June 2026 debut, settling AI-initiated transactions into local bank accounts ([CoinDesk](https://www.coindesk.com/business/2026/05/20/germany-s-allunity-plans-swedish-krona-stablecoin-pushes-into-ai-agentic-payments))
+- **Fireblocks** — Agentic Payments Suite for stablecoin transactions ([The Paypers](https://thepaypers.com/payments/news/fireblocks-launches-agentic-payments-suite-for-stablecoin-transactions))
+- **Circle + Nium** — Partnership to strengthen stablecoin rails for agentic AI payments ([American Banker](https://www.americanbanker.com/payments/news/circle-and-nium-partner-to-boost-stablecoins-ai))
 
 ### AI / Agent Platforms
 
@@ -284,10 +304,11 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 - **OpenAI** — ACP co-creator (with Stripe)
 - **Anthropic** — MPP design partner
 - **Shopify** — UCP co-developer, AP2 & ACP partner
+- **AWS** — Bedrock AgentCore Payments (x402 + Stripe), with the x402 Bazaar MCP server via AgentCore Gateway
 
 ### Crypto & Web3
 
-- **Coinbase** — x402 creator, AP2 partner
+- **Coinbase** — x402 creator, AP2 partner, AgentCore Payments partner
 - **Tempo Labs** — MPP co-author (Paradigm-backed, payments-optimized L1)
 
 ---
@@ -296,11 +317,23 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 ### Major Launches & Milestones
 
-#### UCP Launch (January 2026)
+#### Amazon Bedrock AgentCore Payments (Preview, May 2026)
+
+- [AWS What's New: AgentCore Payments (preview)](https://aws.amazon.com/about-aws/whats-new/2026/04/amazon-bedrock-agentcore-payments-preview/)
+- [AWS ML Blog: Agents that transact, built with Coinbase and Stripe](https://aws.amazon.com/blogs/machine-learning/agents-that-transact-introducing-amazon-bedrock-agentcore-payments-built-with-coinbase-and-stripe/)
+- [Coinbase Blog: AgentCore Payments powered by x402](https://www.coinbase.com/blog/introducing-amazon-bedrock-agentcore-payments-powered-by-x402-and-coinbase)
+
+#### OpenAI Discontinues Instant Checkout (Q1 2026)
+
+- [TechCrunch: OpenAI's plans to make ChatGPT more like Amazon aren't going so well](https://techcrunch.com/2026/03/24/openais-plans-to-make-chatgpt-more-like-amazon-arent-going-so-well/)
+- [CNBC: OpenAI's first crack at online shopping stumbled — preparing for the next wave](https://www.cnbc.com/2026/03/20/open-ai-agentic-shopping-etsy-shopify-walmart-amazon.html)
+
+#### UCP Launch & Expansion (Jan–May 2026)
 
 - [Google Blog: New tech and tools for retailers (NRF 2026)](https://blog.google/products/ads-commerce/agentic-commerce-ai-tools-protocol-retailers-platforms/)
 - [Google Developers Blog: Under the Hood of UCP](https://developers.googleblog.com/under-the-hood-universal-commerce-protocol-ucp/)
 - [UCP Updates: Multi-item carts, catalog, identity linking (Mar 2026)](https://blog.google/products-and-platforms/products/shopping/ucp-updates/)
+- [UCP at Google Marketing Live: Universal Cart (May 2026)](https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live/)
 
 #### A2A v1.0 (2026)
 
@@ -311,10 +344,11 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 - [Stripe Blog: Introducing MPP](https://stripe.com/blog/machine-payments-protocol)
 - [Cloudflare Agents Docs: MPP](https://developers.cloudflare.com/agents/agentic-payments/mpp/)
 
-#### x402 V2 (Late 2025 – Early 2026)
+#### x402 V2 & Adoption (Late 2025 – 2026)
 
 - [x402 V2 Launch Post](https://www.x402.org/writing/x402-v2-launch)
 - [Cloudflare Agents SDK v0.4.0: x402 v2 migration](https://developers.cloudflare.com/changelog/post/2026-02-09-agents-sdk-v040/)
+- [Agentic payments surpass 100M transactions on Base (Chainalysis)](https://www.cryptobreaking.com/agentic-payments-surpass-100m-transactions/)
 
 #### AP2 Launch (September 2025)
 
@@ -332,10 +366,12 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 
 - [Cloudflare Blog: x402 Foundation announcement](https://blog.cloudflare.com/x402/)
 
-#### Network Trust Rails (2025)
+#### Network Trust Rails (2025–2026)
 
 - [Visa: Trusted Agent Protocol press release](https://investor.visa.com/news/news-details/2025/Visa-Introduces-Trusted-Agent-Protocol-An-Ecosystem-Led-Framework-for-AI-Commerce/default.aspx)
 - [Cloudflare: Collaboration with payments companies](https://www.cloudflare.com/press/press-releases/2025/cloudflare-collaborates-with-leading-payments-companies-to-secure-and-enable-agentic-commerce/)
+- [Visa & Mastercard expand agentic AI deployments (American Banker, 2026)](https://www.americanbanker.com/payments/news/visa-mastercard-expand-agentic-ai-deployments)
+- [How Visa and Mastercard are approaching agentic commerce (Digital Commerce 360, Apr 2026)](https://www.digitalcommerce360.com/2026/04/02/visa-mastercard-in-agentic-commerce/)
 
 ### Industry Analysis
 
@@ -343,6 +379,9 @@ Officially reported supporters include Shopify, Etsy, Salesforce, Mastercard, Pa
 - [Finextra Deep Dive: Google's AP2 explained](https://www.finextra.com/blogposting/29408/deep-dive-googles-ap2-explained---the-rulebook-for-agent-led-payments)
 - [PYMNTS: Google unveils payment protocol for AI-driven commerce](https://www.pymnts.com/artificial-intelligence-2/2025/google-unveils-a-payment-protocol-for-ai-driven-commerce/)
 - [Digital Commerce 360: OpenAI expands agentic commerce push (Feb 2026)](https://www.digitalcommerce360.com/2026/02/16/openai-expands-agentic-commerce-push/)
+- [Forrester: Agentic Payments in B2C Commerce — Where We Are Now](https://www.forrester.com/blogs/agentic-payments-in-b2c-commerce-where-we-are-now/)
+- [PYMNTS: Payment Networks Ready Infrastructure for Agentic Commerce at Scale](https://www.pymnts.com/news/artificial-intelligence/2026/payment-networks-ready-infrastructure-agentic-commerce-scale/)
+- [Fenwick: Is 2026 the Year of Agentic Payments?](https://www.fenwick.com/insights/publications/is-2026-the-year-of-agentic-payments)
 
 ### Security & Standards
 
@@ -401,19 +440,19 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting.
 
 ## 📊 About These Protocols
 
-**UCP (Universal Commerce Protocol)** is an open standard co-developed by Google and Shopify for agentic commerce across the full shopping journey — discovery, checkout, identity linking, and order management. UCP is transport-agnostic (REST, MCP, A2A) and compatible with AP2 for secure payment mandates. Launched January 2026 at NRF.
+**UCP (Universal Commerce Protocol)** is an open standard co-developed by Google and Shopify for agentic commerce across the full shopping journey — discovery, checkout, identity linking, and order management. UCP is transport-agnostic (REST, MCP, A2A) and compatible with AP2 for secure payment mandates. Launched January 2026 at NRF; Universal Cart (checkout across Search, Gemini, and Maps with Google Pay) added May 2026.
 
 **AP2 (Agent Payments Protocol)** is Google's open protocol for agent-driven payments with verifiable authorization (mandates) and accountability. Its current core focus is card-based payments with mandate-driven authorization. AP2 serves as the payment layer within UCP.
 
 **A2A (Agent-to-Agent Protocol)** is an open standard under the Linux Foundation for agent interoperability — discovery, communication, and task delegation across agent frameworks and vendors. The v1.0 release (2026) added enterprise features including signed agent cards, multi-tenancy, and version negotiation. The TSC includes AWS, Cisco, Google, IBM Research, Microsoft, Salesforce, SAP, and ServiceNow.
 
-**x402** is an open payment standard built on HTTP 402 for machine-native, internet-native payments. Created by Coinbase and coordinated with Cloudflare via the x402 Foundation. Supports stablecoins on EVM and Solana networks. The v2 release (late 2025) introduced CAIP-based identifiers, a modular SDK architecture, and standards-compliant payment headers.
+**x402** is an open payment standard built on HTTP 402 for machine-native, internet-native payments. Created by Coinbase and coordinated with Cloudflare via the x402 Foundation. Supports stablecoins on EVM and Solana networks. The v2 release (late 2025) introduced CAIP-based identifiers, a modular SDK architecture, and standards-compliant payment headers. By mid-2026 it is wrapped by managed surfaces such as AWS Bedrock AgentCore and had surpassed 100M+ agentic transactions on Base.
 
-**ACP (Agentic Commerce Protocol)** is an open standard co-developed by OpenAI and Stripe for connecting buyers, AI agents, and businesses to complete purchases. Powers Instant Checkout in ChatGPT. Currently in beta with date-based version snapshots. Designed to work with any PSP — Stripe provides the first implementation via Shared Payment Token.
+**ACP (Agentic Commerce Protocol)** is an open standard co-developed by OpenAI and Stripe for connecting buyers, AI agents, and businesses to complete purchases. It originally powered Instant Checkout in ChatGPT; the consumer Instant Checkout experience was discontinued in early 2026, while the ACP protocol continues in a narrower form. Currently in beta with date-based version snapshots. Designed to work with any PSP — Stripe provides the first implementation via Shared Payment Token.
 
 **MPP (Machine Payments Protocol)** is an open standard co-authored by Tempo Labs and Stripe for machine-to-machine payments over HTTP 402. Supports stablecoins, cards, and bank transfers. Offers `charge` (one-off) and `session` (streaming micropayment) intents. Backwards-compatible with x402. Based on an IETF-proposed Payment HTTP Authentication Scheme. Launched March 2026.
 
-**Trusted Agent Protocol (Visa) / Agent Pay (Mastercard)** help merchants and networks recognize cryptographically verified AI agents during browse and pay flows, built on Web Bot Auth (IETF drafts).
+**Trusted Agent Protocol (Visa) / Agent Pay (Mastercard)** help merchants and networks recognize cryptographically verified AI agents during browse and pay flows, built on Web Bot Auth (IETF drafts). Both expanded internationally in 2026.
 
 ---
 
@@ -425,4 +464,4 @@ This list is released under [CC0 1.0](LICENSE) (Public Domain). No rights reserv
 
 ---
 
-**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `trusted-agent-protocol` `agent-pay` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `google-cloud` `coinbase` `stripe` `openai` `tempo`
+**Keywords:** `ucp` `ap2` `agent-payments` `agentic-commerce` `a2a` `x402` `acp` `mpp` `machine-payments-protocol` `trusted-agent-protocol` `agent-pay` `web-bot-auth` `mcp` `stablecoins` `verifiable-credentials` `agentcore` `google-cloud` `coinbase` `stripe` `openai` `aws` `tempo`
